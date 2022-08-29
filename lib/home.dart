@@ -163,10 +163,111 @@ class Main extends StatelessWidget {
   Container Skills(
       double mediaHeight, double mediaWidth, BuildContext context) {
     return Container(
-      height: mediaHeight,
-      width: mediaWidth,
-      child: Text("skills"),
-    );
+        height: mediaHeight,
+        width: mediaWidth,
+        child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(100, 0, 0, 0),
+            child: Text("Skills",
+                style: GoogleFonts.exo(
+                    textStyle: Theme.of(context).textTheme.headline4,
+                    fontSize: 35,
+                    fontWeight: FontWeight.w700,
+                    color: primaryColor,
+                    decoration: TextDecoration.overline)),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(50, 100, 0, 0),
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Programming Languages:",
+                      style: GoogleFonts.exo(
+                        textStyle: Theme.of(context).textTheme.headline4,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                        color: primaryColor,
+                      )),
+                  Text(
+                      "\nJava\nPython\nJavascript\nC\nC#\nDart\nBash\nGit\nHTML\nCSS",
+                      style: GoogleFonts.exo(
+                        textStyle: Theme.of(context).textTheme.headline4,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        color: primaryColor,
+                      )),
+                ]),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(100, 100, 0, 0),
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Libraries and Frameworks:",
+                      style: GoogleFonts.exo(
+                        textStyle: Theme.of(context).textTheme.headline4,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                        color: primaryColor,
+                      )),
+                  Text(
+                      "\n.NET Framework\nReactjs\nNodejs\nExpressjs\nFlask\nAndroid (Java)\nReact Native (CLI + Expo)\nFlutter\n",
+                      style: GoogleFonts.exo(
+                        textStyle: Theme.of(context).textTheme.headline4,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        color: primaryColor,
+                      )),
+                ]),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(100, 100, 0, 0),
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Databases:",
+                      style: GoogleFonts.exo(
+                        textStyle: Theme.of(context).textTheme.headline4,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                        color: primaryColor,
+                      )),
+                  Text(
+                      "\nMS SQL Server\nMySQL\nPostreSQL\nGoogle Firebase\nMongoDB\n",
+                      style: GoogleFonts.exo(
+                        textStyle: Theme.of(context).textTheme.headline4,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        color: primaryColor,
+                      )),
+                ]),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(100, 100, 0, 0),
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Version Control:",
+                      style: GoogleFonts.exo(
+                        textStyle: Theme.of(context).textTheme.headline4,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                        color: primaryColor,
+                      )),
+                  Text("\nGithub\nBitBucket\nGitLab\nSourceTress\n",
+                      style: GoogleFonts.exo(
+                        textStyle: Theme.of(context).textTheme.headline4,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        color: primaryColor,
+                      )),
+                ]),
+          ),
+        ]));
   }
 
   Container About(double mediaHeight, double mediaWidth, BuildContext context) {
