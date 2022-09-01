@@ -39,6 +39,7 @@ dependencies:
   shimmer: ^2.0.0
   animated_text_kit: ^4.2.2
   url_launcher: ^6.1.5
+  expansion_tile_card: ^2.0.0
 
 dev_dependencies:
   flutter_test:
