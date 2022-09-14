@@ -69,7 +69,17 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/images/avatar-removed.png
     - assets/images/avatar.jpeg
+    - assets/images/bitmoji_hi.jpeg
+    - assets/images/breathingapp_horizontal.png
+    - assets/images/ftp.gif
+    - assets/images/hi_test.png
+    - assets/images/iba.jpg
+    - assets/images/sidepose.png
+    - assets/images/SilentScreamer.png
+    - assets/images/wse.gif
+    # - assets/images/avatar.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

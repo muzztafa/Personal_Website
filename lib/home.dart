@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'colors.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -34,15 +35,18 @@ class _HomeState extends State<Home> {
         actions: [
           Padding(
             padding: EdgeInsets.all(width * 0.02),
-            child: RaisedButton(
-              hoverColor: Colors.grey,
-              textColor: primaryColor,
-              color: Colors.white,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(18.0),
-                  side: BorderSide(color: Colors.black)),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.white,
+                elevation: 5,
+                shadowColor: Colors.grey,
+                side: BorderSide(color: Colors.black, width: 1),
+              ),
               child: Text(
                 'Resume',
+                style: TextStyle(
+                  color: Colors.black,
+                ),
               ),
               onPressed: () {
                 launchUrlString(
@@ -204,13 +208,30 @@ class _MainState extends State<Main> {
                       ),
                     ),
                   ),
-                  RaisedButton(
-                    textColor: primaryColor,
-                    color: Colors.white,
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      elevation: 5,
+                      shadowColor: Colors.grey,
+                      side: BorderSide(color: Colors.black, width: 1),
+                    ),
                     child: Text(
                       'Submit',
+                      style: TextStyle(color: Colors.black),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      final Uri params = Uri(
+                        scheme: 'mailto',
+                        path: 'ahmedmustafa5832@gmail.com',
+                        query:
+                            'subject=Web Contact Form&body=From: $name \n $message', //add subject and body here
+                      );
+
+                      var url = params.toString();
+                      {
+                        launchUrlString(url);
+                      }
+                    },
                   )
                 ],
               ),
@@ -336,7 +357,7 @@ class _MainState extends State<Main> {
     return Container(
       height: mediaHeight,
       width: mediaWidth,
-      child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(100, 0, 0, 0),
           child: Text("Projects",
@@ -347,88 +368,46 @@ class _MainState extends State<Main> {
                   color: primaryColor,
                   decoration: TextDecoration.overline)),
         ),
-        Expanded(
-          child: ListView(
-            children: [
-              ProjectCard2(
-                  mediaHeight,
-                  mediaWidth,
-                  "Silent Screamer",
-                  "This game was developed as a term project for the course Advanced Software Engineering - Winter 2022. It is developed using the Unity framework and C#",
-                  "https://github.com/muzztafa/ASEProject",
-                  "images/SilentScreamer.png"),
-              ProjectCard2(
-                  mediaHeight,
-                  mediaWidth,
-                  "Breathing App",
-                  "A customizable breathing app made with love and Java for Android. It comes with configurable pre-set modes and can be downloaded from the App Store",
-                  "https://github.com/muzztafa/Breathing-App-",
-                  "images/breathingapp_horizontal.png"),
-              ProjectCard2(
-                  mediaHeight,
-                  mediaWidth,
-                  "Web Search Engine",
-                  "It's a console based web search engine created on Java. Uses Boyer Moore Algorithm for page ranking and Edit Distance for word suggestions.",
-                  "https://github.com/muzztafa/Web-Search-Engine",
-                  "images/wse.gif"),
-              ProjectCard2(
-                  mediaHeight,
-                  mediaWidth,
-                  "FTP Protocol",
-                  "A small implementation of the FTP protocol in C. Uses sockets for connects and data tranfers. NO PIPES are used in this implementation.",
-                  "https://github.com/muzztafa/FTP-Protocol/tree/master",
-                  "images/ftp.gif"),
-            ],
+        Align(
+          alignment: Alignment.topRight,
+          child: SizedBox(
+            height: mediaHeight * 0.7,
+            width: mediaWidth * 0.8,
+            child: ListView(
+              children: [
+                ProjectCard2(
+                    mediaHeight,
+                    mediaWidth,
+                    "Silent Screamer",
+                    "This game was developed as a term project for the course Advanced Software Engineering - Winter 2022. It is developed using the Unity framework and C#",
+                    "https://github.com/muzztafa/ASEProject",
+                    "images/SilentScreamer.png"),
+                ProjectCard2(
+                    mediaHeight,
+                    mediaWidth,
+                    "Breathing App",
+                    "A customizable breathing app made with love and Java for Android. It comes with configurable pre-set modes and can be downloaded from the App Store",
+                    "https://github.com/muzztafa/Breathing-App-",
+                    "images/breathingapp_horizontal.png"),
+                ProjectCard2(
+                    mediaHeight,
+                    mediaWidth,
+                    "Web Search Engine",
+                    "It's a console based web search engine created on Java. Uses Boyer Moore Algorithm for page ranking and Edit Distance for word suggestions.",
+                    "https://github.com/muzztafa/Web-Search-Engine",
+                    "images/wse.gif"),
+                ProjectCard2(
+                    mediaHeight,
+                    mediaWidth,
+                    "FTP Protocol",
+                    "A small implementation of the FTP protocol in C. Uses sockets for connects and data tranfers. NO PIPES are used in this implementation.",
+                    "https://github.com/muzztafa/FTP-Protocol/tree/master",
+                    "images/ftp.gif"),
+              ],
+            ),
           ),
         ),
       ]),
-    );
-  }
-
-  Padding ProjectCard(
-      double mediaHeight, double mediaWidth, String title, String url) {
-    return Padding(
-      padding: EdgeInsets.fromLTRB(
-          mediaHeight * 0.1, mediaHeight * 0.1, mediaHeight * 0.1, 0),
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.grey,
-              blurRadius: 5,
-              spreadRadius: 3,
-            )
-          ],
-          borderRadius: BorderRadius.circular(10),
-          color: Colors.white,
-        ),
-        child: SizedBox(
-          height: mediaWidth * 0.15,
-          width: mediaWidth * 0.25,
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Image.asset("images/SilentScreamer.png"),
-              ),
-              Align(alignment: Alignment.topCenter, child: Text("HELLO")),
-              Padding(
-                padding: const EdgeInsets.only(top: 15, bottom: 6),
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                    child: Icon(
-                      Icons.link,
-                      color: primaryColor,
-                    ),
-                    onPressed: () {},
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
     );
   }
 
@@ -436,81 +415,109 @@ class _MainState extends State<Main> {
       String desc, String url, String image) {
     return Padding(
       padding: EdgeInsets.fromLTRB(
-          mediaHeight * 0.01, mediaHeight * 0.1, mediaHeight * 0.01, 0),
+          mediaWidth * 0.01, mediaWidth * 0.1, mediaWidth * 0.01, 0),
       child: Card(
         child: Container(
           height: mediaHeight * 0.35,
+          width: mediaWidth * 0.75,
           color: Colors.white,
           child: Row(
             children: [
               Center(
                 child: Padding(
                   padding: EdgeInsets.all(10),
-                  child: Expanded(
-                    child: Image.asset(image),
-                    flex: 2,
-                  ),
+                  child: Image.asset(image),
                 ),
               ),
+
               Expanded(
-                child: Container(
-                  alignment: Alignment.topLeft,
-                  child: Column(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded(
-                        flex: 5,
-                        child: ListTile(
-                          title: Text(title,
-                              style: GoogleFonts.exo(
-                                  textStyle:
-                                      Theme.of(context).textTheme.headline4,
-                                  fontSize: mediaWidth * 0.03,
-                                  fontWeight: FontWeight.w700,
-                                  color: primaryColor,
-                                  decoration: TextDecoration.lineThrough)),
-                          subtitle: Text(desc,
-                              style: GoogleFonts.exo(
-                                textStyle:
-                                    Theme.of(context).textTheme.bodyMedium,
-                                fontSize: mediaWidth * 0.015,
-                                fontWeight: FontWeight.w500,
-                                color: primaryColor,
-                              )),
+                      Text(title,
+                          style: GoogleFonts.exo(
+                              textStyle: Theme.of(context).textTheme.headline4,
+                              fontSize: mediaWidth * 0.03,
+                              fontWeight: FontWeight.w700,
+                              color: primaryColor,
+                              decoration: TextDecoration.lineThrough)),
+                      Text(desc,
+                          style: GoogleFonts.exo(
+                            textStyle: Theme.of(context).textTheme.bodyMedium,
+                            fontSize: mediaWidth * 0.015,
+                            fontWeight: FontWeight.w500,
+                            color: primaryColor,
+                          )),
+                      Align(
+                        alignment: Alignment.bottomRight,
+                        child: TextButton(
+                          child: FaIcon(
+                            FontAwesomeIcons.github,
+                            color: Colors.black,
+                          ),
+                          // child: Text("Github",
+                          //     style: GoogleFonts.exo(
+                          //       textStyle:
+                          //           Theme.of(context).textTheme.bodyMedium,
+                          //       fontSize: mediaHeight * 0.03,
+                          //       fontWeight: FontWeight.w500,
+                          //       color: primaryColor,
+                          //     )),
+                          onPressed: () {
+                            launchUrlString(url);
+                          },
                         ),
                       ),
-                      Expanded(
-                        flex: 5,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            TextButton(
-                              child: FaIcon(
-                                FontAwesomeIcons.github,
-                                color: Colors.black,
-                              ),
-                              // child: Text("Github",
-                              //     style: GoogleFonts.exo(
-                              //       textStyle:
-                              //           Theme.of(context).textTheme.bodyMedium,
-                              //       fontSize: mediaHeight * 0.03,
-                              //       fontWeight: FontWeight.w500,
-                              //       color: primaryColor,
-                              //     )),
-                              onPressed: () {
-                                launchUrlString(url);
-                              },
-                            ),
-                            SizedBox(
-                              width: 8,
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                flex: 8,
+                    ]),
               ),
+
+              // Container(
+              //   alignment: Alignment.topLeft,
+              //   child: Column(
+              //     mainAxisAlignment: MainAxisAlignment.start,
+              //     crossAxisAlignment: CrossAxisAlignment.start,
+              //     children: [
+              //       Text(title,
+              //           style: GoogleFonts.exo(
+              //               textStyle: Theme.of(context).textTheme.headline4,
+              //               fontSize: mediaWidth * 0.03,
+              //               fontWeight: FontWeight.w700,
+              //               color: primaryColor,
+              //               decoration: TextDecoration.lineThrough)),
+              //       Text(desc,
+              //           style: GoogleFonts.exo(
+              //             textStyle: Theme.of(context).textTheme.bodyMedium,
+              //             fontSize: mediaWidth * 0.015,
+              //             fontWeight: FontWeight.w500,
+              //             color: primaryColor,
+              //           )),
+              //       Align(
+              //         alignment: Alignment.bottomRight,
+              //         child: TextButton(
+              //           child: FaIcon(
+              //             FontAwesomeIcons.github,
+              //             color: Colors.black,
+              //           ),
+              //           // child: Text("Github",
+              //           //     style: GoogleFonts.exo(
+              //           //       textStyle:
+              //           //           Theme.of(context).textTheme.bodyMedium,
+              //           //       fontSize: mediaHeight * 0.03,
+              //           //       fontWeight: FontWeight.w500,
+              //           //       color: primaryColor,
+              //           //     )),
+              //           onPressed: () {
+              //             launchUrlString(url);
+              //           },
+              //         ),
+              //       ),
+              //       SizedBox(
+              //         width: 8,
+              //       )
+              //     ],
+              //   ),
+              // ),
             ],
           ),
         ),
@@ -523,117 +530,116 @@ class _MainState extends State<Main> {
   Container Skills(
       double mediaHeight, double mediaWidth, BuildContext context) {
     return Container(
-        height: mediaHeight,
-        width: mediaWidth,
-        child: Expanded(
-          child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Padding(
-              padding: EdgeInsets.fromLTRB(mediaWidth * 0.1, 0, 0, 0),
-              child: Text("Skills",
-                  style: GoogleFonts.exo(
+      height: mediaHeight,
+      width: mediaWidth,
+      child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Padding(
+          padding: EdgeInsets.fromLTRB(mediaWidth * 0.1, 0, 0, 0),
+          child: Text("Skills",
+              style: GoogleFonts.exo(
+                  textStyle: Theme.of(context).textTheme.headline4,
+                  fontSize: mediaHeight * 0.05,
+                  fontWeight: FontWeight.w700,
+                  color: primaryColor,
+                  decoration: TextDecoration.overline)),
+        ),
+        Padding(
+          padding:
+              EdgeInsets.fromLTRB(mediaWidth * 0.03, mediaHeight * 0.1, 0, 0),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Programming Languages:",
+                    style: GoogleFonts.exo(
                       textStyle: Theme.of(context).textTheme.headline4,
-                      fontSize: mediaHeight * 0.05,
+                      fontSize: mediaHeight * 0.03,
                       fontWeight: FontWeight.w700,
                       color: primaryColor,
-                      decoration: TextDecoration.overline)),
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(
-                  mediaWidth * 0.03, mediaHeight * 0.1, 0, 0),
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Programming Languages:",
-                        style: GoogleFonts.exo(
-                          textStyle: Theme.of(context).textTheme.headline4,
-                          fontSize: mediaHeight * 0.03,
-                          fontWeight: FontWeight.w700,
-                          color: primaryColor,
-                        )),
-                    Text(
-                        "\nJava\nPython\nJavascript\nC\nC#\nDart\nBash\nGit\nHTML\nCSS",
-                        style: GoogleFonts.exo(
-                          textStyle: Theme.of(context).textTheme.headline4,
-                          fontSize: mediaHeight * 0.02,
-                          fontWeight: FontWeight.w500,
-                          color: primaryColor,
-                        )),
-                  ]),
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(
-                  mediaWidth * 0.07, mediaHeight * 0.1, 0, 0),
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Libraries and Frameworks:",
-                        style: GoogleFonts.exo(
-                          textStyle: Theme.of(context).textTheme.headline4,
-                          fontSize: mediaHeight * 0.03,
-                          fontWeight: FontWeight.w700,
-                          color: primaryColor,
-                        )),
-                    Text(
-                        "\n.NET Framework\nReactjs\nNodejs\nExpressjs\nFlask\nAndroid (Java)\nReact Native (CLI + Expo)\nFlutter\n",
-                        style: GoogleFonts.exo(
-                          textStyle: Theme.of(context).textTheme.headline4,
-                          fontSize: mediaHeight * 0.02,
-                          fontWeight: FontWeight.w500,
-                          color: primaryColor,
-                        )),
-                  ]),
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(
-                  mediaWidth * 0.07, mediaHeight * 0.1, 0, 0),
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Databases:",
-                        style: GoogleFonts.exo(
-                          textStyle: Theme.of(context).textTheme.headline4,
-                          fontSize: mediaHeight * 0.03,
-                          fontWeight: FontWeight.w700,
-                          color: primaryColor,
-                        )),
-                    Text(
-                        "\nMS SQL Server\nMySQL\nPostreSQL\nGoogle Firebase\nMongoDB\n",
-                        style: GoogleFonts.exo(
-                          textStyle: Theme.of(context).textTheme.headline4,
-                          fontSize: mediaHeight * 0.02,
-                          fontWeight: FontWeight.w500,
-                          color: primaryColor,
-                        )),
-                  ]),
-            ),
-            // Padding(
-            //   padding: EdgeInsets.fromLTRB(
-            //       mediaWidth * 0.07, mediaHeight * 0.1, 0, 0),
-            //   child: Column(
-            //       mainAxisAlignment: MainAxisAlignment.start,
-            //       crossAxisAlignment: CrossAxisAlignment.start,
-            //       children: [
-            //         Text("Version Control:",
-            //             style: GoogleFonts.exo(
-            //               textStyle: Theme.of(context).textTheme.headline4,
-            //               fontSize: mediaHeight * 0.03,
-            //               fontWeight: FontWeight.w700,
-            //               color: primaryColor,
-            //             )),
-            //         Text("\nGithub\nBitBucket\nGitLab\nSourceTress\n",
-            //             style: GoogleFonts.exo(
-            //               textStyle: Theme.of(context).textTheme.headline4,
-            //               fontSize: mediaHeight * 0.02,
-            //               fontWeight: FontWeight.w500,
-            //               color: primaryColor,
-            //             )),
-            //       ]),
-            // ),
-          ]),
-        ));
+                    )),
+                Text(
+                    "\nJava\nPython\nJavascript\nC\nC#\nDart\nBash\nGit\nHTML\nCSS",
+                    style: GoogleFonts.exo(
+                      textStyle: Theme.of(context).textTheme.headline4,
+                      fontSize: mediaHeight * 0.02,
+                      fontWeight: FontWeight.w500,
+                      color: primaryColor,
+                    )),
+              ]),
+        ),
+        Padding(
+          padding:
+              EdgeInsets.fromLTRB(mediaWidth * 0.07, mediaHeight * 0.1, 0, 0),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Libraries and Frameworks:",
+                    style: GoogleFonts.exo(
+                      textStyle: Theme.of(context).textTheme.headline4,
+                      fontSize: mediaHeight * 0.03,
+                      fontWeight: FontWeight.w700,
+                      color: primaryColor,
+                    )),
+                Text(
+                    "\n.NET Framework\nReactjs\nNodejs\nExpressjs\nFlask\nAndroid (Java)\nReact Native (CLI + Expo)\nFlutter\n",
+                    style: GoogleFonts.exo(
+                      textStyle: Theme.of(context).textTheme.headline4,
+                      fontSize: mediaHeight * 0.02,
+                      fontWeight: FontWeight.w500,
+                      color: primaryColor,
+                    )),
+              ]),
+        ),
+        Padding(
+          padding:
+              EdgeInsets.fromLTRB(mediaWidth * 0.07, mediaHeight * 0.1, 0, 0),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Databases:",
+                    style: GoogleFonts.exo(
+                      textStyle: Theme.of(context).textTheme.headline4,
+                      fontSize: mediaHeight * 0.03,
+                      fontWeight: FontWeight.w700,
+                      color: primaryColor,
+                    )),
+                Text(
+                    "\nMS SQL Server\nMySQL\nPostreSQL\nGoogle Firebase\nMongoDB\n",
+                    style: GoogleFonts.exo(
+                      textStyle: Theme.of(context).textTheme.headline4,
+                      fontSize: mediaHeight * 0.02,
+                      fontWeight: FontWeight.w500,
+                      color: primaryColor,
+                    )),
+              ]),
+        ),
+        // Padding(
+        //   padding: EdgeInsets.fromLTRB(
+        //       mediaWidth * 0.07, mediaHeight * 0.1, 0, 0),
+        //   child: Column(
+        //       mainAxisAlignment: MainAxisAlignment.start,
+        //       crossAxisAlignment: CrossAxisAlignment.start,
+        //       children: [
+        //         Text("Version Control:",
+        //             style: GoogleFonts.exo(
+        //               textStyle: Theme.of(context).textTheme.headline4,
+        //               fontSize: mediaHeight * 0.03,
+        //               fontWeight: FontWeight.w700,
+        //               color: primaryColor,
+        //             )),
+        //         Text("\nGithub\nBitBucket\nGitLab\nSourceTress\n",
+        //             style: GoogleFonts.exo(
+        //               textStyle: Theme.of(context).textTheme.headline4,
+        //               fontSize: mediaHeight * 0.02,
+        //               fontWeight: FontWeight.w500,
+        //               color: primaryColor,
+        //             )),
+        //       ]),
+        // ),
+      ]),
+    );
   }
 
   Container About(double mediaHeight, double mediaWidth, BuildContext context) {
