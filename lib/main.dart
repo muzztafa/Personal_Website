@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/home.dart';
+import 'package:portfolio/web/page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,9 +25,9 @@ class MyApp extends StatelessWidget {
         //   // or simply save your changes to "hot reload" in a Flutter IDE).
         //   // Notice that the counter didn't reset back to zero; the application
         //   // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.grey,
       ),
-      home: const Home(),
+      home: const PageMain(),
       debugShowCheckedModeBanner: false,
     );
   }
