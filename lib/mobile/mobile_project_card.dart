@@ -15,49 +15,47 @@ Padding ProjectCardMobile(double mediaHeight, double mediaWidth, String title,
         height: mediaHeight * 0.3,
         width: mediaWidth * 0.75,
         color: Colors.white,
-        child: Expanded(
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(flex: 5, child: Image.asset(image)),
-                Expanded(
-                  flex: 1,
-                  child: Text(title,
-                      style: GoogleFonts.exo(
-                          // textStyle: Theme.of(context).textTheme.headline4,
-                          fontSize: mediaWidth * 0.04,
-                          fontWeight: FontWeight.w700,
-                          color: primaryColor,
-                          decoration: TextDecoration.lineThrough)),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Text(desc,
-                      style: GoogleFonts.exo(
-                        // textStyle: Theme.of(context).textTheme.bodyMedium,
-                        fontSize: mediaWidth * 0.02,
-                        fontWeight: FontWeight.w500,
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(flex: 5, child: Image.asset(image)),
+              Expanded(
+                flex: 1,
+                child: Text(title,
+                    style: GoogleFonts.exo(
+                        // textStyle: Theme.of(context).textTheme.headline4,
+                        fontSize: mediaWidth * 0.04,
+                        fontWeight: FontWeight.w700,
                         color: primaryColor,
-                      )),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: TextButton(
-                      child: FaIcon(
-                        FontAwesomeIcons.github,
-                        color: Colors.black,
-                      ),
-                      onPressed: () {
-                        launchUrlString(url);
-                      },
+                        decoration: TextDecoration.lineThrough)),
+              ),
+              Expanded(
+                flex: 1,
+                child: Text(desc,
+                    style: GoogleFonts.exo(
+                      // textStyle: Theme.of(context).textTheme.bodyMedium,
+                      fontSize: mediaWidth * 0.02,
+                      fontWeight: FontWeight.w500,
+                      color: primaryColor,
+                    )),
+              ),
+              Expanded(
+                flex: 1,
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: TextButton(
+                    child: FaIcon(
+                      FontAwesomeIcons.github,
+                      color: Colors.black,
                     ),
+                    onPressed: () {
+                      launchUrlString(url);
+                    },
                   ),
                 ),
-              ]),
-        ),
+              ),
+            ]),
       ),
       elevation: 8,
       margin: EdgeInsets.all(10),
