@@ -105,7 +105,7 @@ class _MainState extends State<Main> {
 
   @override
   Widget build(BuildContext context) {
-    double mediaHeight = MediaQuery.of(context).size.height * 0.8;
+    double mediaHeight = MediaQuery.of(context).size.height;
     double mediaWidth = MediaQuery.of(context).size.width;
 
     return SingleChildScrollView(
